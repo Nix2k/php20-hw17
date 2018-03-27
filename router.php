@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__.'/routines.php';
 require __DIR__.'/controllers/CUser.php';
 require __DIR__.'/controllers/CTask.php';
 
@@ -73,7 +74,13 @@ else { # если контроллер не передан - основная с
 	if ($user->isLogedin()) { #если пользователь уже залогинен
 		$iamReporterTasks = new Dashboard('iamReporter');
 		$myTasks = new Dashboard('myTasks');
-		include './templates/main.php'; 	
+		//include './templates/main.php';
+		$template = $twig ->loadTemplate('main.php');
+		$params = array(
+			'iamReporterTasks' => $iamReporterTasks,
+			'myTasks' => $myTasks
+		);
+		$template->display($params);
 	}
 	else {
 		CUser::login();

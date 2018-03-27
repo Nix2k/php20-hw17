@@ -14,9 +14,11 @@
 		<input type="submit" name="submit" value="Добавить задачу">
 	</form>
 	<h2>Созданные мной задачи</h2>
-	<?php $iamReporterTasks->printDashboard(); ?>
+	<!--?php $iamReporterTasks->printDashboard(); ?-->
+	{{ iamReporterTasks.printDashboard() }}
 	<h2>Назначенные мне</h2>
-	<?php $myTasks->printDashboard(); ?>
+	<!--?php $myTasks->printDashboard(); ?-->
+	{{ myTasks.printDashboard() }}
 	<a href="index.php?contr=user&act=logout">Выйти</a>
 
 </body>
