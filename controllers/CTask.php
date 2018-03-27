@@ -38,7 +38,7 @@ class CTask
 			$id = clearInput($_GET['id']);
 			$task = new Task();
 			$task->getById($id);
-			include '.\templates\edit_task.php';
+			include './templates/edit_task.php';
 		}
 	}
 
@@ -59,7 +59,7 @@ class CTask
 			$id = clearInput($_GET['id']);
 			$task = new Task();
 			$task->getById($id);
-			include '.\templates\assign_task.php';
+			include './templates/assign_task.php';
 		}
 	}
 

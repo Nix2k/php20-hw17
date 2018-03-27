@@ -3,7 +3,7 @@ class CUser
 {
 	public function registration()
 	{
-		include '.\templates\registration.php';
+		include './templates/registration.php';
 	}
 	
 	public function add()
@@ -33,7 +33,7 @@ class CUser
 	
 	public function login()
 	{
-		include '.\templates\login.php';
+		include './templates/login.php';
 	}
 	
 	public function auth()

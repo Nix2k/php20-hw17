@@ -1,6 +1,6 @@
 <?php
-require __DIR__.'\controllers\CUser.php';
-require __DIR__.'\controllers\CTask.php';
+require __DIR__.'/controllers/CUser.php';
+require __DIR__.'/controllers/CTask.php';
 
 $user = new User();
 
@@ -73,7 +73,7 @@ else { # если контроллер не передан - основная с
 	if ($user->isLogedin()) { #если пользователь уже залогинен
 		$iamReporterTasks = new Dashboard('iamReporter');
 		$myTasks = new Dashboard('myTasks');
-		include '.\templates\main.php'; 	
+		include './templates/main.php'; 	
 	}
 	else {
 		CUser::login();
