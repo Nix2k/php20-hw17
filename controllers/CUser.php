@@ -3,7 +3,9 @@ class CUser
 {
 	public function registration()
 	{
-		include './templates/registration.php';
+		//include './templates/registration.php';
+		$template = $twig ->loadTemplate('registration.php');
+		$template->display();
 	}
 	
 	public function add()
@@ -33,7 +35,9 @@ class CUser
 	
 	public function login()
 	{
-		include './templates/login.php';
+		//include './templates/login.php';
+		$template = $twig ->loadTemplate('login.php');
+		$template->display();
 	}
 	
 	public function auth()

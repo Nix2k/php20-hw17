@@ -18,7 +18,8 @@
 		<th>Исполнитель</th>
 		<th>Действия</th>
 	</tr>
-	<?php $task->printTaskForEdit() ?>
+	<!--?php $task->printTaskForEdit() ?-->
+	{{ task.printTaskForEdit() }}
 </table>
 <a href="index.php">Главная</a>
 

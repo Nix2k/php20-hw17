@@ -18,7 +18,8 @@
 		<th>Исполнитель</th>
 		<th>Действия</th>
 	</tr>
-	<?php $task->printTaskForAssign() ?>
+	<!--?php $task->printTaskForAssign() ?-->
+	{{ task.printTaskForAssign() }}
 </table>
 <a href="index.php">Главная</a>
 
