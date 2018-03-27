@@ -21,16 +21,4 @@
 		return false;
 	}
 
-	function sort2order ($sort)
-	{
-		switch ($sort) {
-			case 'desc':
-				return ' ORDER BY description';
-			case 'status':
-				return ' ORDER BY is_done';
-			case 'date':
-				return ' ORDER BY date_added';
-		}
-		return '';
-	}
 ?>
