@@ -1,7 +1,5 @@
 <?php
 require_once './vendor/autoload.php';
-$loader = new Twig_Loader_Filesystem(__DIR__ . '/templates');
-$twig = new Twig_Environment($loader);
 
 class CTask 
 {
@@ -43,6 +41,8 @@ class CTask
 			$task = new Task();
 			$task->getById($id);
 			//include './templates/edit_task.php';
+			$loader = new Twig_Loader_Filesystem('./templates');
+			$twig = new Twig_Environment($loader);
 			$template = $twig ->loadTemplate('edit_task.php');
 			$params = array('task' => $task);
 			$template->display($params);
@@ -67,6 +67,8 @@ class CTask
 			$task = new Task();
 			$task->getById($id);
 			//include './templates/assign_task.php';
+			$loader = new Twig_Loader_Filesystem('./templates');
+			$twig = new Twig_Environment($loader);
 			$template = $twig ->loadTemplate('assign_task.php');
 			$params = array('task' => $task);
 			$template->display($params);

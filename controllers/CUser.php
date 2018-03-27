@@ -1,15 +1,16 @@
 <?php
 require_once './vendor/autoload.php';
-$loader = new Twig_Loader_Filesystem(__DIR__ . '/templates');
-$twig = new Twig_Environment($loader);
 
 class CUser
 {
 	public function registration()
 	{
 		//include './templates/registration.php';
-		$template = $twig ->loadTemplate('registration.php');
-		$template->display();
+		$loader = new Twig_Loader_Filesystem('./templates');
+		$twig = new Twig_Environment($loader);
+		$template = $twig->loadTemplate('registration.php');
+		$params = array();
+		$template->display($params);
 	}
 	
 	public function add()
@@ -40,8 +41,11 @@ class CUser
 	public function login()
 	{
 		//include './templates/login.php';
-		$template = $twig ->loadTemplate('login.php');
-		$template->display();
+		$loader = new Twig_Loader_Filesystem('./templates');
+		$twig = new Twig_Environment($loader);
+		$template = $twig->loadTemplate('login.php');
+		$params = array();
+		$template->display($params);
 	}
 	
 	public function auth()
