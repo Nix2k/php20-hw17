@@ -1,26 +1,34 @@
 <?php
+require_once './routines.php';
+
 class Dashboard
 {
 	private $sqlQuery;
 	private $tasks;
 
-	public function __construct($sql)
+	public function __construct($type)
 	{
-		$this->sqlQuery = $sql;  //like "SELECT task.*, reporter.login AS rlogin, assignie.login AS alogin FROM task INNER JOIN user AS reporter ON task.user_id=reporter.id INNER JOIN user AS assignie ON task.assigned_user_id=assignie.id WHERE task.user_id=".$user->getId( ).sort2order($sort1)
-		require './db.php';
-		try {
-	    	$pdo = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPass);
-		} catch (PDOException $e) {
-	    	echo 'Подключение не удалось: ' . $e->getMessage();
-		}
-		$data = $pdo->query($sql);
-		if ($data) {
-			$this->tasks = array();
-			foreach ($data as $row) {
-				$this->tasks[] = new Task($row['id'], $row['description'], $row['rlogin'], $row['alogin'], $row['is_done'], $row['date_added']);
+		$user = new User();
+		if ($user->isLogedin()) { #если пользователь уже залогинен
+			switch ($type) {
+				case 'iamReporter':
+					$sql = "SELECT task.*, reporter.login AS rlogin, assignie.login AS alogin FROM task INNER JOIN user AS reporter ON task.user_id=reporter.id INNER JOIN user AS assignie ON task.assigned_user_id=assignie.id WHERE task.user_id=".$user->getId( );
+					break;
+				case 'myTasks':
+					$sql = 'SELECT task.*, reporter.login AS rlogin, assignie.login AS alogin FROM task INNER JOIN user AS reporter ON task.user_id=reporter.id INNER JOIN user AS assignie ON task.assigned_user_id=assignie.id WHERE task.assigned_user_id='.$user->getId( ).' AND reporter.id!='.$user->getId( );
+					break;
 			}
+			$this->sqlQuery = $sql;
+			require './db.php';
+			$data = $pdo->query($sql);
+			if ($data) {
+				$this->tasks = array();
+				foreach ($data as $row) {
+					$this->tasks[] = new Task($row['id'], $row['description'], $row['rlogin'], $row['alogin'], $row['is_done'], $row['date_added']);
+				}
+			}
+			return false;
 		}
-		return false;
 	}
 
 	public function printDashboard()
@@ -28,9 +36,9 @@ class Dashboard
 		echo '<table>
 				<tr>
 					<th>id</th>
-					<th><a href="index.php?sort1=desc">Описание</a></th>
-					<th><a href="index.php?sort1=status">Статус</a></th>
-					<th><a href="index.php?sort1=date">Дата добавления</a></th>
+					<th>Описание</th>
+					<th>Статус</th>
+					<th>Дата добавления</th>
 					<th>Автор</th>
 					<th>Исполнитель</th>
 					<th colspan="4">Действия</th>

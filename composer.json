@@ -1,0 +1,13 @@
+{
+    "name": "nix2k/php20-hw17",
+    "type": "project",
+    "require": {
+        "twig/twig": "^2.4"
+    },
+    "authors": [
+        {
+            "name": "Nix2k",
+            "email": "mihail.bokov@gmail.com"
+        }
+    ]
+}
