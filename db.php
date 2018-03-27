@@ -1,5 +1,5 @@
 <?php
-	$dbName = 'php20hw14';
+	$dbName = 'php20hw17';
 	$dbHost = 'localhost';
 	$dbUser = 'php20';
 	$dbPass = 'php20pass';
