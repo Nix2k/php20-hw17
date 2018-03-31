@@ -96,7 +96,7 @@ class Task
 					<input type='hidden' name='contr' value='task'>
 					<input type='hidden' name='act' value='update'>
 					<td>$this->id</td>
-					<td><input type='text' name='desc' value='$this->description'></td>
+					<td><input type='text' name='desc' value='$this->description' style='display: inline-block; min-width: 360px;'></td>
 					<td>$status</td>
 					<td>$this->createdDate</td>
 					<td>$this->reporter</td>
