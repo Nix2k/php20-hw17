@@ -42,13 +42,23 @@ class Task
 
 	public function printTaskForDashboard()
 	{
-		if ($this->status==0) {
-			$status = '<span style="color: red;">Не выполнено</span>';
-			$workflow = "<a href='index.php?contr=task&act=workflow&transition_id=1&id=$this->id'>Выполнено</a>";
-		}
-		else {
-			$status = '<span style="color: green;">Выполнено</span>';
-			$workflow = "<a href='index.php?contr=task&act=workflow&transition_id=0&id=$this->id'>Открыть заново</a>";
+		switch ($this->status) {
+			case 0:
+				$status = '<span style="color: red;">To Do</span>';
+				$workflow = "<a href='index.php?contr=task&act=workflow&new_status=1&id=$this->id'>Взять в работу</a>";
+				break;
+			case 1:
+				$status = '<span style="color: orange;">В работе</span>';
+				$workflow = "<a href='index.php?contr=task&act=workflow&new_status=2&id=$this->id'>Завершено</a>";
+				break;
+			case 2:
+				$status = '<span style="color: green;">Done</span>';
+				$workflow = "<a href='index.php?contr=task&act=workflow&new_status=0&id=$this->id'>Открыть заново</a>";
+				break;
+			default:
+				$status = '';
+				$workflow = '';
+				break;
 		}
 		echo "<tr>
 				<td>$this->id</td>
@@ -66,11 +76,19 @@ class Task
 
 	public function printTaskForEdit()
 	{
-		if ($this->status==0) {
-			$status = '<span style="color: red;">Не выполнено</span>';
-		}
-		else {
-			$status = '<span style="color: green;">Выполнено</span>';
+		switch ($this->status) {
+			case 0:
+				$status = '<span style="color: red;">To Do</span>';
+				break;
+			case 1:
+				$status = '<span style="color: orange;">В работе</span>';
+				break;
+			case 2:
+				$status = '<span style="color: green;">Done</span>';
+				break;
+			default:
+				$status = '';
+				break;
 		}
 		echo "<tr>
 				<form action='index.php'>
@@ -92,11 +110,19 @@ class Task
 	{
 		$user = new User();
 		if ($user->isLogedin()) {
-			if ($this->status==0) {
-				$status = '<span style="color: red;">Не выполнено</span>';
-			}
-			else {
-				$status = '<span style="color: green;">Выполнено</span>';
+			switch ($this->status) {
+				case 0:
+					$status = '<span style="color: red;">To Do</span>';
+					break;
+				case 1:
+					$status = '<span style="color: orange;">В работе</span>';
+					break;
+				case 2:
+					$status = '<span style="color: green;">Done</span>';
+					break;
+				default:
+					$status = '';
+					break;
 			}
 			require './db.php';
 			$sql1 = "SELECT * FROM user WHERE id!=".$user->getId( );
@@ -158,12 +184,12 @@ class Task
 		}
 	}
 
-	public function transitionTask($id, $transition_id)
+	public function transitionTask($id, $newStatus)
 	{
 		$user = new User();
 		if ($user->isLogedin()) {
 			require './db.php';
-			$sql = "UPDATE `task` SET `is_done`=".$transition_id." WHERE `id`=".$id;
+			$sql = "UPDATE `task` SET `is_done`=".$newStatus." WHERE `id`=".$id;
 			$data = $pdo->query($sql);
 			if (!$data) {
 				die ('Ошибка!');

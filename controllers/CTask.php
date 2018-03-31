@@ -25,11 +25,11 @@ class CTask
 
 	public function workflow()
 	{
-		if ((isset($_GET['id'])) && (isset($_GET['transition_id']))) {
+		if ((isset($_GET['id'])) && (isset($_GET['new_status']))) {
 			$id = clearInput($_GET['id']);
-			$transition_id = clearInput($_GET['transition_id']);
+			$newStatus = clearInput($_GET['new_status']);
 			$task = new Task();
-			$task->transitionTask($id, $transition_id);
+			$task->transitionTask($id, $newStatus);
 			header('Location: index.php');
 		}
 	}
