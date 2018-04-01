@@ -63,11 +63,11 @@ class Task
 		echo "<tr>
 				<td>$this->id</td>
 				<td>$this->description</td>
-				<td style='taxt-align: center;'>$status</td>
+				<td style='text-align: center;'>$status</td>
 				<td>$this->createdDate</td>
 				<td>$this->reporter</td>
 				<td>$this->assignie</td>
-				<td style='taxt-align: center;'>$workflow</td>
+				<td style='text-align: center;'>$workflow</td>
 				<td><a href='index.php?contr=task&act=edit&id=$this->id'>Редактировать</a></td>
 				<td><a href='index.php?contr=task&act=assign&id=$this->id'>Назначить</a></td>
 				<td><a href='index.php?contr=task&act=del&id=$this->id'>Удалить</a></td>
@@ -97,7 +97,7 @@ class Task
 					<input type='hidden' name='act' value='update'>
 					<td>$this->id</td>
 					<td><input type='text' name='desc' value='$this->description' style='display: inline-block; min-width: 360px;'></td>
-					<td style='taxt-align: center;'>$status</td>
+					<td style='text-align: center;'>$status</td>
 					<td>$this->createdDate</td>
 					<td>$this->reporter</td>
 					<td>$this->assignie</td>
@@ -135,7 +135,7 @@ class Task
 						<input type='hidden' name='act' value='upd_assignie'>
 						<td>$this->id</td>
 						<td>$this->description</td>
-						<td style='taxt-align: center;'>$status</td>
+						<td style='text-align: center;'>$status</td>
 						<td>$this->createdDate</td>
 						<td>$this->reporter</td>
 						<td>
