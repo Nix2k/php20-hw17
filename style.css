@@ -6,6 +6,10 @@
 	font-size: 12px;
 }
 
+body {
+	padding: 8px;
+}
+
 h1 {
 	font-size: 18px;
 	padding: 12px;
